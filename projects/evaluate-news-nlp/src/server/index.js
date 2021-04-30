@@ -33,7 +33,7 @@ function listening() {
 
 const app = express()
 
-// Setup empty JS object to act as endpoint for all routes
+// Setup empty JS object to act as endpoint for all routes// do i need this? ...
 let projectData = {};
 
 app.get('/all', getData)
@@ -42,26 +42,25 @@ function getData(req, res) {
   res.send(projectData)
 }
 
-//POST ROUTE (posting new info back like zip and users entered feelings)
-app.post('/addNewURL')
-
+//POST ROUTE (posting new info back) 28/04/2021  In this POST route's handler, you have to get the data sent from the form from the request object and make a GET request to MeaningCloud's API.
 app.use(express.static('dist'))
 
+app.post('/addNewURL')
+
+app.get('/', (req, res) => res.sendFile(path.resolve('dist/index.html')));
+
+//fetch here
+
+const key = 'API_KEY=2e4344a209be1bbe0f4124ad76d6683f'
+const url = //what to put here??
+
+fetch(`https://api.meaningcloud.com/sentiment-2.1?key=${key}&url=${url}&lang=en`, { method: 'POST' })
+
+//Once you get the data from the MeaningCloud API, simply send it back to the client.
+
+
+  .then(response => response.json())
+  .then(data => console.log(data));
+
+
 //end of api//
-
-console.log(__dirname)
-
-app.get('/', function (req, res) {
-    // res.sendFile('dist/index.html')
-    res.sendFile('dist/index.html')
-})
-
-// designates what port the app will listen to for incoming requests
-// designates what port the app will listen to for incoming requests
-app.listen(8081, function () {
-    console.log('Example app listening on port 8081!')
-   })
-
-app.get('/test', function (req, res) {
-    res.send(mockAPIResponse)
-})
