@@ -10,6 +10,7 @@ export function handleSubmit(event) {
 };
 //using the then keyword we can post our data to server .so we post data and use fetch later to receive it back. 
 //to have it appear on page, we need to dynamically update UI to have it on our static webpage.
+//fetch 
 
 const postData = async (url = '', data = {}) => {
   const response = await fetch('http://localhost:8081' + url, {
@@ -29,7 +30,7 @@ const postData = async (url = '', data = {}) => {
   }
 }
 
-//28/04/2021 Then on the client side, once you receive this data, extract the needed fields (they are shown in the project rubric) and call a function to update your UI (you can call it updateUI) by passing this data. 
+//Then on the client side, once you receive this data, extract the needed fields (in the project rubric) and call a function to update your UI (you can call it updateUI) by passing this data. 
 
 const updateUI = async (data) => {
   document.getElementById("model").innerHTML = `<p> Model: ${data.model}</p>`;

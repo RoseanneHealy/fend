@@ -1,5 +1,5 @@
 //// Setup empty JS object to act as endpoint for all routes// do i need this? ...
-//let projectData = {};
+let projectData = {};
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -33,16 +33,16 @@ const server = app.listen(port, listening);
 function listening() {
   console.log(`running on localhost: ${port}`);
 };
-
+//run app
 const app = express()
-
-app.get('/', (req, res) => res.sendFile(path.resolve('dist/index.html')));
-
-//POST ROUTE (posting new info back) 28/04/2021  In this POST route's handler, you have to get the data sent from the form from the request object and make a GET request to MeaningCloud's API.
 app.use(express.static('dist'))
 
+//specifying what our browser should get when in touch with our server
+app.get('/', (req, res) => res.sendFile(path.resolve('dist/index.html')));
+
+//POST ROUTE (posting new info back)
 app.post('/addNewURL',async(req, res)=>{ 
-const meaningCloudTranslation = await fetch(`https://api.meaningcloud.com/sentiment-2.1?key=${key}&url=${url}&lang=en`, { method: 'POST' })
+const urlCreation = await fetch(`https://api.meaningcloud.com/sentiment-2.1?key=${key}&url=${url}&lang=en`, { method: 'POST' })
 });
 
 
@@ -50,9 +50,9 @@ const meaningCloudTranslation = await fetch(`https://api.meaningcloud.com/sentim
 //Once you get the data from the MeaningCloud API, simply send it back to the client.
 
 try{
-  const Completedata = await meaningCloudTranslation.json();
-  console.log(meaningCloudTranslation, Completedata)
-  res.send(Completedata);
+  const Completedata = await urlCreation.json();
+  console.log(urlCreation, Completedata)
+  res.send(urlCreation);
 }catch(error){
   console.log("error", error);
 }
