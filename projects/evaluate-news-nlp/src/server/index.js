@@ -3,6 +3,9 @@ const express = require('express')
 const app = express()
 app.use(express.static('dist'))
 
+require("babel-core/register");
+require("babel-polyfill");
+
 
 //// Setup empty JS object to act as endpoint for all routes// do i need this? ...
 let projectData = {};
