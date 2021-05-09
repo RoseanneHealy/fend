@@ -40,3 +40,4 @@ const updateUI = async (data) => {
   document.getElementById("confidence").innerHTML = `<p> Confidence: ${data.confidence}</p>`;
   document.getElementById("irony").innerHTML = `<p> Irony: ${data.irony}</p>`;
 }
+
