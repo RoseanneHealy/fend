@@ -1,12 +1,12 @@
 export function handleSubmit(event) {
   event.preventDefault()
-  let urlInput = document.getElementById('url').value
+  let urlInput = document.getElementById('name').value
 
   let input = {
     url: encodeURI(urlInput)
   }
   console.log(input);
-  postData('/addNewURL', input);
+  postData('/addNewURL', input).then( data => updateUI(data));
 };
 //using the then keyword we can post our data to server .so we post data and use fetch later to receive it back. 
 //to have it appear on page, we need to dynamically update UI to have it on our static webpage.
